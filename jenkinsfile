@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Run script') {
+      steps {
+        sh 'chmod +x run.sh'
+        sh './run.sh'
+      }
+    }
+
+  }
+
+  post {
+    success {
+      echo '🎉 Pipeline ejecutado correctamente'
+    }
+    failure {
+      echo '❌ Pipeline fallido'
+    }
+  }
+}
