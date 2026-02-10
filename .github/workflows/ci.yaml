@@ -1,9 +1,9 @@
 name: CI Local Jenkins Trigger
 
-on:
-  push:
+on: [push,merge]
     branches:
       - develop
+      - master
 
 jobs:
   trigger-jenkins:
@@ -19,4 +19,5 @@ jobs:
             -u admin:${{ secrets.JENKINS_API_TOKEN }} \
             -H "$CRUMB" \
             "http://localhost:8080/job/release-execution-platform/build?token=123"
+
 
