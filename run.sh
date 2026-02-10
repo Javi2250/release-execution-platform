@@ -4,7 +4,6 @@ set -e
 echo "🚀 Ejecutando run.sh"
 echo "📍 Directorio actual: $(pwd)"
 echo "👤 Usuario: $(whoami)"
-echo "🐧 Kernel: $(uname -a)"
-
-echo "✅ Script ejecutado correctamente"
+echo "Esta es mi primera ejecución seria"
+echo "✅ Script ejecutado satisfactoriamente"
 
