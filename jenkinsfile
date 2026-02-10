@@ -1,18 +1,28 @@
 pipeline {
   agent any
 
+  options {
+    timestamps()              // ⏱ Logs con hora
+    ansiColor('xterm')        // 🎨 Logs con color
+  }
+
   stages {
 
     stage('Checkout') {
       steps {
+        echo "\u001B[34m📥 Checkout del código\u001B[0m"
         checkout scm
       }
     }
 
-    stage('Run script') {
+    stage('Execute') {
       steps {
-        sh 'chmod +x run.sh'
-        sh './run.sh'
+        echo "\u001B[33m🚀 Ejecutando run.sh\u001B[0m"
+        sh '''
+          set -e
+          chmod +x run.sh
+          ./run.sh
+        '''
       }
     }
 
@@ -20,10 +30,19 @@ pipeline {
 
   post {
     success {
-      echo '🎉 Pipeline ejecutado correctamente'
+      script {
+        currentBuild.displayName = "#${env.BUILD_NUMBER} ✅"
+        currentBuild.description = "Execution OK"
+      }
+      echo "\u001B[32m🎉 Pipeline ejecutado correctamente\u001B[0m"
     }
+
     failure {
-      echo '❌ Pipeline fallido'
+      script {
+        currentBuild.displayName = "#${env.BUILD_NUMBER} ❌"
+        currentBuild.description = "Execution FAILED"
+      }
+      echo "\u001B[31m❌ Pipeline fallido\u001B[0m"
     }
   }
 }
