@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Trigger Jenkins job
         run: |
-          CRUMB=$(curl -s -u admin:1100a8915863ae7507d64794f915ffb434 \
+          CRUMB=$(curl -s -u admin:${{ secrets.JENKINS_API_TOKEN }} \
             'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
 
           curl -X POST \
-            -u admin:1100a8915863ae7507d64794f915ffb434 \
+            -u admin:${{ secrets.JENKINS_API_TOKEN }} \
             -H "$CRUMB" \
             "http://localhost:8080/job/release-execution-platform/build?token=123"
 
