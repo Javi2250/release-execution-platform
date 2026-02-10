@@ -6,5 +6,5 @@ echo "📍 Directorio actual: $(pwd)"
 echo "👤 Usuario: $(whoami)"
 echo "🐧 Kernel: $(uname -a)"
 
-echo "✅ Script ejecutado correctamente"
+echo "✅ Script ejecutado satisfactoriamente"
 
