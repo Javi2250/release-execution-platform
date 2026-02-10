@@ -1,6 +1,7 @@
 name: CI Local Jenkins Trigger
 
-on: [push,merge]
+on: 
+  push:
     branches:
       - develop
       - master
